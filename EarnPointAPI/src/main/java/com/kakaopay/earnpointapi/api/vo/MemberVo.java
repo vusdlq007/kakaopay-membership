@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 
 @Data
@@ -14,7 +15,7 @@ public class MemberVo {
 
     @Id
     @Column(name = "id")
-    private String memberId;
+    private Integer memberId;
 
     @Column(name = "name")
     private String name;
@@ -28,7 +29,7 @@ public class MemberVo {
     private PointVo point;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
 
 }

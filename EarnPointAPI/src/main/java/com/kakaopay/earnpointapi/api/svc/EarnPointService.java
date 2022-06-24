@@ -1,15 +1,15 @@
 package com.kakaopay.earnpointapi.api.svc;
 
 
-import com.kakaopay.earnpointapi.api.dto.CoreRequestDTO;
-import com.kakaopay.earnpointapi.api.dto.CoreResponseDTO;
+import com.kakaopay.earnpointapi.api.dto.EarnRequestDTO;
+import com.kakaopay.earnpointapi.api.dto.EarnResponseDTO;
 
 public interface EarnPointService {
 
-    CoreResponseDTO joinMember(CoreRequestDTO requestDto);
+    EarnResponseDTO joinMember(EarnRequestDTO requestDTO);
 
-    CoreResponseDTO earnPoints(CoreRequestDTO requestDto);
+    EarnResponseDTO earnPoints(EarnRequestDTO requestDTO);
 
-    CoreResponseDTO readBarcode(CoreRequestDTO requestDto);
+    EarnResponseDTO readBarcode(EarnRequestDTO requestDTO);
 
 }

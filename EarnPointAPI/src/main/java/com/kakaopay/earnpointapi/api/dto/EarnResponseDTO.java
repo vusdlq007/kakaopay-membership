@@ -5,7 +5,7 @@ import lombok.Data;
 
 //@AllArgsConstructor
 @Data
-public class CoreResponseDTO<T> {
+public class EarnResponseDTO<T> {
 
     @ApiModelProperty(value = "응답 코드", dataType = "integer", example = "200")
     private Integer resCode;
@@ -24,15 +24,15 @@ public class CoreResponseDTO<T> {
     @ApiModelProperty(value = "요청자ID", dataType = "string")
     private String acUserId;
 
-    public CoreResponseDTO() { }
+    public EarnResponseDTO() { }
 
-    public CoreResponseDTO(Integer resCode, String resMessage, T responseResult) {
+    public EarnResponseDTO(Integer resCode, String resMessage, T responseResult) {
         this.resCode = resCode;
         this.resMessage = resMessage;
         this.resResult = responseResult;
     }
 
-    public CoreResponseDTO(Integer resCode, String resMessage, T responseResult, String acUserId, String accessType) {
+    public EarnResponseDTO(Integer resCode, String resMessage, T responseResult, String acUserId, String accessType) {
         this.resCode = resCode;
         this.resMessage = resMessage;
         this.resResult = responseResult;

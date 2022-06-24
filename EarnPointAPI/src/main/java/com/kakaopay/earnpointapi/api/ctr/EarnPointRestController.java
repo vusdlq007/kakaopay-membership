@@ -1,7 +1,7 @@
 package com.kakaopay.earnpointapi.api.ctr;
 
-import com.kakaopay.earnpointapi.api.dto.CoreRequestDTO;
-import com.kakaopay.earnpointapi.api.dto.CoreResponseDTO;
+import com.kakaopay.earnpointapi.api.dto.EarnRequestDTO;
+import com.kakaopay.earnpointapi.api.dto.EarnResponseDTO;
 import com.kakaopay.earnpointapi.api.svc.EarnPointService;
 import io.swagger.annotations.*;
 import lombok.extern.slf4j.Slf4j;
@@ -45,9 +45,7 @@ public class EarnPointRestController {
             @ApiResponse(code = 500, message = "서버 에러")
     })
     @PostMapping("/point")
-    public CoreResponseDTO earnPoints(@RequestBody CoreRequestDTO requestDTO){
-
-        log.debug("Y_TEST requestBody ["+requestDTO+"]");
+    public EarnResponseDTO earnPoints(@RequestBody EarnRequestDTO requestDTO){
 
         return earnService.earnPoints(requestDTO);
     }

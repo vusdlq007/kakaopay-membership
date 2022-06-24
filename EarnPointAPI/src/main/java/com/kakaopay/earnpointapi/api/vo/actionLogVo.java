@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,7 +14,7 @@ public class actionLogVo {
 
     @Id
     @Column(name = "id")
-    private String logId;
+    private Integer logId;
 
     @JsonBackReference
     @ManyToOne         // 하나의 Member는 여러개의 log를 가질수 있기때문에 T_ACT_LOG 관점에서는 @ManyToOne이 된다. 해당 키의 주인되는 엔티티는 외래키를 가지고 있기때문에 현재 테이블인 T_ACT_LOG가 된다.
@@ -35,10 +36,10 @@ public class actionLogVo {
     private String acType;                  // 액션 타입
 
     @Column(name = "approved_at")
-    private Date approvedAt;
+    private LocalDateTime approvedAt;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
 
 }
