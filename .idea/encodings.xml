@@ -3,7 +3,7 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/EarnPointAPI/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/IssueBarcodeAPI/src/main/java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/IssueBarcodeAPI/src/main/resources/application-local.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/IssueBarcodeAPI/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/PointSearchAPI/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/UsePointAPI/src/main/java" charset="UTF-8" />
   </component>

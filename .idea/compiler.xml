@@ -7,14 +7,15 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="IssueBarcodeAPI" />
         <module name="PointSearchAPI" />
         <module name="EarnPointAPI" />
         <module name="UsePointAPI" />
+        <module name="IssueAPI" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="EarnPointAPI" target="11" />
+      <module name="IssueAPI" target="11" />
       <module name="IssueBarcodeAPI" target="11" />
       <module name="PointSearchAPI" target="11" />
       <module name="UsePointAPI" target="11" />
@@ -23,6 +24,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="EarnPointAPI" options="-parameters" />
+      <module name="IssueAPI" options="-parameters" />
       <module name="IssueBarcodeAPI" options="-parameters" />
       <module name="PointSearchAPI" options="-parameters" />
       <module name="UsePointAPI" options="-parameters" />

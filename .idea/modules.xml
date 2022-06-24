@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EarnPointAPI/EarnPointAPI.iml" filepath="$PROJECT_DIR$/EarnPointAPI/EarnPointAPI.iml" />
-      <module fileurl="file://$PROJECT_DIR$/IssueBarcodeAPI/IssueBarcodeAPI.iml" filepath="$PROJECT_DIR$/IssueBarcodeAPI/IssueBarcodeAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/IssueBarcodeAPI/IssueAPI.iml" filepath="$PROJECT_DIR$/IssueBarcodeAPI/IssueAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/PointSearchAPI/PointSearchAPI.iml" filepath="$PROJECT_DIR$/PointSearchAPI/PointSearchAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/UsePointAPI/UsePointAPI.iml" filepath="$PROJECT_DIR$/UsePointAPI/UsePointAPI.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/kakaopay.iml" filepath="$PROJECT_DIR$/.idea/kakaopay.iml" />
