@@ -14,11 +14,11 @@ public class CoreRequestDTO {
     private String acUserId;
 
     @ApiModelProperty(value = "요청 내용", dataType = "json", required = true)
-    private Object reqDetail;
+    private MemberDTO reqDetail;
 
     public CoreRequestDTO() { }
 
-    public CoreRequestDTO(String accessType, Object reqDetail) {
+    public CoreRequestDTO(String accessType, MemberDTO reqDetail) {
         this.accessType = accessType;
         this.reqDetail = reqDetail;
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Data
@@ -13,7 +14,7 @@ public class StoreVo {
 
     @Id
     @Column(name = "id")
-    private String storeId;
+    private Integer storeId;
 
     @Column(name = "name")
     private String name;
@@ -24,7 +25,7 @@ public class StoreVo {
     private StoreCategoryVo categoryId;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
 
 
 }

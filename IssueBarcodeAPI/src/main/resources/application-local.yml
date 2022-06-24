@@ -26,7 +26,7 @@ spring:
 #      max-lifetime: 600000        # 10분으로 설정. 커넥션의 최대 유지 시간을 밀리초 단위로 설정한다. 이 시간이 지난 커넥션 중에서 사용중인 커넥션은 종료된 이후에 풀에서 제거한다.
 #      username: root
 #      password: root
-    url: jdbc:mariadb://localhost:3308/MEMBERSHIP
+    url: jdbc:mariadb://localhost:3308/MEMBERSHIP?characterEncoding=UTF-8&serverTimezone=UTC
     username: root
     password: root
     driver-class-name: org.mariadb.jdbc.Driver
