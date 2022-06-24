@@ -1,9 +1,7 @@
 package com.kakaopay.earnpointapi.api.repo;
 
 
-import com.kakaopay.earnpointapi.api.vo.MemberVo;
 import com.kakaopay.earnpointapi.api.vo.PointVo;
-import com.kakaopay.earnpointapi.api.vo.StoreCategoryVo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

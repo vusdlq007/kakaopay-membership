@@ -10,6 +10,9 @@ public class EarnRequestDTO {
     @ApiModelProperty(value = "요청 타입", dataType = "string")
     private String accessType;
 
+    @ApiModelProperty(value = "상점명", required = true)
+    private String storeName;
+
     @ApiModelProperty(value = "요청 카테고리", required = true)
     private Integer category;
 

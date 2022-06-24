@@ -8,6 +8,7 @@ import com.kakaopay.earnpointapi.api.vo.MemberVo;
 import com.kakaopay.earnpointapi.api.vo.PointVo;
 import com.kakaopay.earnpointapi.api.vo.StoreCategoryVo;
 import com.kakaopay.earnpointapi.cmm.constant.ResponseCode;
+import com.kakaopay.earnpointapi.cmm.constant.TypeConstant;
 import com.kakaopay.earnpointapi.cmm.util.Util;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,13 +52,13 @@ public class EarnPointServiceImpl implements EarnPointService {
             pointVo = pointRepository.findByBarcodeAndCategory(requestDTO.getBarcode(), requestDTO.getCategory());
         }catch (Exception e){
             log.error("ERRMSG ",e.getMessage());
-            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), requestDTO);
+            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), requestDTO.getCategory(), null, TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
         }
 
 
         // 최초 적립일떄.
         if (pointVo.isEmpty()){
-            // Member 랜덤 고유키 생성(9자리)
+            // 랜덤 고유키 생성(9자리)
             long uuid = Util.generateUUID(9);
             LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone));
 
@@ -71,7 +72,7 @@ public class EarnPointServiceImpl implements EarnPointService {
                 pointRepository.save(pointVo.get());
             }catch (Exception e){
                 log.error("ERRMSG ",e.getMessage());
-                return new EarnResponseDTO(ResponseCode.POINT_EARN_FAIL.getStatus(), ResponseCode.POINT_EARN_FAIL.getErrorCode(), requestDTO);
+                return new EarnResponseDTO(ResponseCode.POINT_EARN_FAIL.getStatus(), ResponseCode.POINT_EARN_FAIL.getErrorCode(), requestDTO.getCategory(), pointVo.get().getCreatedAt(), TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
             }
 
         }else{
@@ -80,8 +81,7 @@ public class EarnPointServiceImpl implements EarnPointService {
             pointVo.get().update(requestDTO.getBarcode(),requestDTO.getCategory(),nowPoint + requestDTO.getEarnPoint());
         }
 
-
-        return new EarnResponseDTO(ResponseCode.POINT_EARN_SUCCESS.getStatus(), ResponseCode.POINT_EARN_SUCCESS.getErrorCode(), ResponseCode.POINT_EARN_SUCCESS.getMessage());
+        return new EarnResponseDTO(ResponseCode.POINT_EARN_SUCCESS.getStatus(), ResponseCode.POINT_EARN_SUCCESS.getErrorCode(), requestDTO.getCategory(), pointVo.get().getCreatedAt(), TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
     }
 
 }

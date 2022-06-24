@@ -3,41 +3,51 @@ package com.kakaopay.earnpointapi.api.dto;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 //@AllArgsConstructor
 @Data
-public class EarnResponseDTO<T> {
+public class EarnResponseDTO {
 
     @ApiModelProperty(value = "응답 코드", dataType = "integer", example = "200")
     private Integer resCode;
     @ApiModelProperty(value = "응답 메시지", dataType = "string")
     private String resMessage;
 
-    @ApiModelProperty(value = "응답 내용", dataType = "object", required = true)
-    private T resResult;
+    @ApiModelProperty(value = "업종정보", dataType = "integer")
+    private Integer category;
 
-    @ApiModelProperty(value = "요청 타입", dataType = "string")
+    @ApiModelProperty(value = "바코드", dataType = "string")
+    private String barcode;
+
+    @ApiModelProperty(value = "적립할 포인트")
+    private Integer earnPoint;
+
+    @ApiModelProperty(value = "승인 시간")
+    private LocalDateTime approvedAt;
+
+    @ApiModelProperty(value = "액션 구분")
     private String accessType;
 
-    @ApiModelProperty(value = "액션 타입", dataType = "string")
-    private String actionType;
-
-    @ApiModelProperty(value = "요청자ID", dataType = "string")
-    private String acUserId;
+    @ApiModelProperty(value = "상점명", dataType = "string")
+    private String storeName;
 
     public EarnResponseDTO() { }
 
-    public EarnResponseDTO(Integer resCode, String resMessage, T responseResult) {
+    public EarnResponseDTO(Integer resCode, String resMessage) {
         this.resCode = resCode;
         this.resMessage = resMessage;
-        this.resResult = responseResult;
     }
 
-    public EarnResponseDTO(Integer resCode, String resMessage, T responseResult, String acUserId, String accessType) {
+    public EarnResponseDTO(Integer resCode, String resMessage, Integer category, LocalDateTime approvedAt, String accessType, String storeName, String barcode, Integer earnPoint) {
         this.resCode = resCode;
         this.resMessage = resMessage;
-        this.resResult = responseResult;
-        this.acUserId = acUserId;
+        this.category = category;
+        this.approvedAt = approvedAt;
         this.accessType = accessType;
+        this.storeName = storeName;
+        this.barcode = barcode;
+        this.earnPoint = earnPoint;
     }
 
 

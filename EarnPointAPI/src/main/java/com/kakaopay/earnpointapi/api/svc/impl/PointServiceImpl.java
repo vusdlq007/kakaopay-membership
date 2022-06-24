@@ -8,6 +8,7 @@ import com.kakaopay.earnpointapi.api.vo.MemberVo;
 import com.kakaopay.earnpointapi.api.vo.PointVo;
 import com.kakaopay.earnpointapi.api.vo.StoreCategoryVo;
 import com.kakaopay.earnpointapi.cmm.constant.ResponseCode;
+import com.kakaopay.earnpointapi.cmm.constant.TypeConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,10 +48,9 @@ public class PointServiceImpl implements PointService {
             pointVo = pointRepository.findByBarcodeAndCategory(requestDTO.getBarcode(), requestDTO.getCategory());
         }catch (Exception e){
             log.error("ERRMSG ",e.getMessage());
-            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), requestDTO);
+            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), requestDTO.getCategory(), null, TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
         }
 
-
-        return new EarnResponseDTO(ResponseCode.POINT_SEARCH_SUCCESS.getStatus(), ResponseCode.POINT_SEARCH_SUCCESS.getErrorCode(), requestDTO);
+        return new EarnResponseDTO(ResponseCode.POINT_SEARCH_SUCCESS.getStatus(), ResponseCode.POINT_SEARCH_SUCCESS.getErrorCode(), requestDTO.getCategory(), null, TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
     }
 }
