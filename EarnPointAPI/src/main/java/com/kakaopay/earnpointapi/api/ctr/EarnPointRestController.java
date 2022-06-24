@@ -21,18 +21,6 @@ public class EarnPointRestController {
     @Autowired
     private EarnPointService earnService;
 
-    @ApiOperation(value="API 동작여부 확인", notes="실행되고있는 현재 모듈 폴링체크 기능으로 요청헤더 응답.")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "API 정상 작동"),
-            @ApiResponse(code = 500, message = "서버 에러")
-    })
-    @GetMapping("/healthCheck")
-    public String healthCheck(){
-
-        return "호출성공! ";
-    }
-
-
 
     /**
      * 특정 맴버의 바코드 기준 Point 적립.
