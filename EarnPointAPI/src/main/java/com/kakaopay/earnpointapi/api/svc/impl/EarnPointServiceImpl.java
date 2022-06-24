@@ -60,6 +60,7 @@ public class EarnPointServiceImpl implements EarnPointService {
         if (pointVo.isEmpty()){
             // 랜덤 고유키 생성(9자리)
             long uuid = Util.generateUUID(9);
+
             LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone));
 
             pointVo = Optional.of(new PointVo());

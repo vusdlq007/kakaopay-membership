@@ -49,6 +49,7 @@ public class ActionLogServiceImpl implements ActionLogService {
 
         // Member 랜덤 고유키 생성(9자리)
         long uuid = Util.generateUUID(9);
+
         LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone));
 
         try{
