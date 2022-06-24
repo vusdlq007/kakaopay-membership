@@ -30,13 +30,6 @@ public class EarnPointServiceImpl implements EarnPointService {
     @Autowired
     PointRepository pointRepository;
 
-    @Override
-    @Transactional
-    public EarnResponseDTO joinMember(EarnRequestDTO requestDto) {
-
-        return null;
-    }
-
     /**
      * 최초 적립시에는 단순 저장, 이후 적립은 더티 체크로 업데이트
      * @param requestDTO
@@ -91,9 +84,4 @@ public class EarnPointServiceImpl implements EarnPointService {
         return new EarnResponseDTO(ResponseCode.POINT_EARN_SUCCESS.getStatus(), ResponseCode.POINT_EARN_SUCCESS.getErrorCode(), ResponseCode.POINT_EARN_SUCCESS.getMessage());
     }
 
-    @Override
-    @Transactional(readOnly = true)
-    public EarnResponseDTO readBarcode(EarnRequestDTO requestDto) {
-        return null;
-    }
 }

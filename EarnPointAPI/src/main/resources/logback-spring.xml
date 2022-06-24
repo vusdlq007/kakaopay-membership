@@ -14,7 +14,7 @@
 
     <!-- fileAppender설정 -->
     <appender name="DailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logHome}/issue-barcode-api.log</file>
+        <file>${logHome}/earn-point-api.log</file>
         <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
         <!--            <level>DEBUG</level>-->
         <!--        </filter>-->

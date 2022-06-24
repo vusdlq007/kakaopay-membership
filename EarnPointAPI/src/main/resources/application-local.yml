@@ -69,6 +69,6 @@ custom:
   service:
     timezone: Asia/Seoul
 
-# 스웨거 request 용 (http://localhost:9801/swagger-ui.html#)
+# 스웨거 request 용 (http://localhost:9802/swagger-ui.html#)
 swagger:
   url: localhost:9802

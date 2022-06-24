@@ -6,10 +6,6 @@ import com.kakaopay.earnpointapi.api.dto.EarnResponseDTO;
 
 public interface EarnPointService {
 
-    EarnResponseDTO joinMember(EarnRequestDTO requestDTO);
-
     EarnResponseDTO earnPoints(EarnRequestDTO requestDTO);
-
-    EarnResponseDTO readBarcode(EarnRequestDTO requestDTO);
 
 }
