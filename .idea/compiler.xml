@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="IssueBarcodeAPI" />
+        <module name="PointSearchAPI" />
+        <module name="EarnPointAPI" />
+        <module name="UsePointAPI" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="EarnPointAPI" target="11" />
+      <module name="IssueBarcodeAPI" target="11" />
+      <module name="PointSearchAPI" target="11" />
+      <module name="UsePointAPI" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="EarnPointAPI" options="-parameters" />
+      <module name="IssueBarcodeAPI" options="-parameters" />
+      <module name="PointSearchAPI" options="-parameters" />
+      <module name="UsePointAPI" options="-parameters" />
+    </option>
+  </component>
+</project>
