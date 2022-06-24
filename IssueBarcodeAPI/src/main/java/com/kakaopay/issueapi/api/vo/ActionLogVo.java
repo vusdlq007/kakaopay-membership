@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name = "T_ACT_LOG")
-public class actionLogVo {
+public class ActionLogVo {
 
     @Id
     @Column(name = "id")

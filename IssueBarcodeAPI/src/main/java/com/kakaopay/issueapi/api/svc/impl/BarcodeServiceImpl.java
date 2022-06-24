@@ -57,7 +57,7 @@ public class BarcodeServiceImpl implements BarcodeService {
             }
 
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("ERRMSG ",e.getMessage());
             return new CoreResponseDTO(ResponseCode.BARCODE_SEARCH_FAIL.getStatus(), ResponseCode.BARCODE_SEARCH_FAIL.getErrorCode(), requestDto);
         }
 
@@ -84,7 +84,7 @@ public class BarcodeServiceImpl implements BarcodeService {
             memberDTO.setCreatedAt(memberVo.get().getCreatedAt());
 
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("ERRMSG ",e.getMessage());
             return new CoreResponseDTO(ResponseCode.BARCODE_SEARCH_FAIL.getStatus(), ResponseCode.BARCODE_SEARCH_FAIL.getErrorCode(), requestDto);
         }
         return new CoreResponseDTO(ResponseCode.BARCODE_SEARCH_SUCCESS.getStatus(), ResponseCode.BARCODE_SEARCH_SUCCESS.getErrorCode(), memberDTO);
@@ -118,7 +118,7 @@ public class BarcodeServiceImpl implements BarcodeService {
             }
 
         } catch (Exception e) {
-            log.error(e.getMessage());
+            log.error("ERRMSG ",e.getMessage());
             return new CoreResponseDTO(ResponseCode.BARCODE_SEARCH_FAIL.getStatus(), ResponseCode.BARCODE_SEARCH_FAIL.getErrorCode(), requestDto);
         }
         return new CoreResponseDTO(ResponseCode.BARCODE_SEARCH_SUCCESS.getStatus(), ResponseCode.BARCODE_SEARCH_SUCCESS.getErrorCode(), memberDTOList);
