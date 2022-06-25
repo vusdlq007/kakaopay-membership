@@ -70,7 +70,7 @@ public class ActionLogServiceImpl implements ActionLogService {
             logVo.setAcType(responseDTO.getAccessType());
             logVo.setCategory(responseDTO.getCategory());
             logVo.setApprovedAt(responseDTO.getApprovedAt());
-            logVo.setRemainPoint(remainPoint + responseDTO.getEarnPoint());
+            logVo.setRemainPoint(remainPoint);
             logVo.setStoreName(responseDTO.getStoreName());
             logVo.setCreatedAt(curTime);
         }else{

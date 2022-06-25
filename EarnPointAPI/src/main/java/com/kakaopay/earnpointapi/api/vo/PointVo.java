@@ -23,6 +23,10 @@ public class PointVo {
     @JoinColumn
     private Integer category;
 
+    @JoinColumn
+    @Column(name = "store_id")
+    private String storeId;
+
     @Column(name = "point")
     private Integer point;
 
@@ -30,10 +34,11 @@ public class PointVo {
     private LocalDateTime createdAt;
 
 
-    public void update(String barcode, Integer category, Integer point) {
+    public void update(String barcode, Integer category, Integer point, String storeId) {
         this.barcode = barcode;
         this.category = category;
         this.point = point;
+        this.storeId = storeId;
     }
 
 }

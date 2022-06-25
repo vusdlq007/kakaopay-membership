@@ -21,6 +21,10 @@ public class PointVo {
     @JoinColumn
     private Integer category;
 
+    @JoinColumn
+    @Column(name = "store_id")
+    private String storeId;
+
     @Column(name = "point")
     private Integer point;
 

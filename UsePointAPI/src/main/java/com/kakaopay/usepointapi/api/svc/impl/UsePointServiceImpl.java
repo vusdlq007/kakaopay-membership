@@ -57,7 +57,7 @@ public class UsePointServiceImpl implements UsePointService {
         }
 
 
-        // 포인트 정보가 없을때.
+        // 포인트 정보가 없을때. (맴버십 바코드 정보가 T_POINT에 없을때)
         if (pointVo.isEmpty()){
             // 랜덤 고유키 생성(9자리)
             long uuid = Util.generateUUID(9);
@@ -68,6 +68,7 @@ public class UsePointServiceImpl implements UsePointService {
             pointVo.get().setBarcode(requestDTO.getBarcode());
             pointVo.get().setCategory(requestDTO.getCategory());
             pointVo.get().setPoint(requestDTO.getUsePoint());
+            pointVo.get().setStoreId(requestDTO.getStoreId());
             pointVo.get().setCreatedAt(curTime);
 
             return new UseResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), requestDTO.getCategory(), null, TypeConstant.USE, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getUsePoint());

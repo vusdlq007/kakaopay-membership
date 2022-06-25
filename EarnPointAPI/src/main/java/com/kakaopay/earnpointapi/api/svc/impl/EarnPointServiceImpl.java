@@ -68,6 +68,7 @@ public class EarnPointServiceImpl implements EarnPointService {
             pointVo.get().setBarcode(requestDTO.getBarcode());
             pointVo.get().setCategory(requestDTO.getCategory());
             pointVo.get().setPoint(requestDTO.getEarnPoint());
+            pointVo.get().setStoreId(requestDTO.getStoreId());
             pointVo.get().setCreatedAt(curTime);
             try {
                 pointRepository.save(pointVo.get());
@@ -79,7 +80,7 @@ public class EarnPointServiceImpl implements EarnPointService {
         }else{
             int nowPoint = pointVo.get().getPoint();
             // 현재 포인트에서 적립포인트를 더한 값으로 업데이트
-            pointVo.get().update(requestDTO.getBarcode(),requestDTO.getCategory(),nowPoint + requestDTO.getEarnPoint());
+            pointVo.get().update(requestDTO.getBarcode(),requestDTO.getCategory(),nowPoint + requestDTO.getEarnPoint(), requestDTO.getStoreId());
         }
 
         return new EarnResponseDTO(ResponseCode.POINT_EARN_SUCCESS.getStatus(), ResponseCode.POINT_EARN_SUCCESS.getErrorCode(), requestDTO.getCategory(), pointVo.get().getCreatedAt(), TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
