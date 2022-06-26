@@ -47,22 +47,23 @@ public class BarcodeServiceImpl implements BarcodeService {
     public CoreResponseDTO issueBarcode(CoreRequestDTO requestDto) {
 
         MemberVo memberVo = new MemberVo();
+        int memberId = requestDto.getReqDetail().getMemberId();
+        int idLength = String.valueOf(memberId).length();
         // Member 랜덤 고유키 생성(9자리)
-        long memberUuid = Util.generateUUID(9);
         long barcodeUuid = Util.generateUUID(10);
         LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone == null ? "Asia/Seoul": timeZone));
 
-        log.debug("barcodeUuid["+barcodeUuid+"]");
-        memberVo.setMemberId((int) memberUuid);
+        if(idLength > 9){
+            return new CoreResponseDTO(ResponseCode.BARCODE_ISSUE_FAIL.getStatus(), ResponseCode.BARCODE_ISSUE_FAIL.getErrorCode(), ResponseCode.BARCODE_ISSUE_FAIL.getMessage());
+        }
+
+        memberVo.setMemberId(memberId);
         memberVo.setBarcode(String.valueOf(barcodeUuid));
         memberVo.setName(requestDto.getReqDetail().getName());
         memberVo.setCreatedAt(curTime);
-        log.debug("memberVo["+memberVo.toString()+"]");
-        log.debug("memberVo["+memberVo.getBarcode()+"]");
-        log.debug("is["+memberRepository.toString()+"]");
 
         try {
-            Optional<MemberVo> result = memberRepository.findByBarcode(memberVo.getBarcode());
+            Optional<MemberVo> result = memberRepository.findById(memberVo.getMemberId());
 
             if(result.isEmpty()){
                 memberRepository.save(memberVo);

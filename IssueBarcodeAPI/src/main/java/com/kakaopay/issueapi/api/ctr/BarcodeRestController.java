@@ -68,8 +68,6 @@ public class BarcodeRestController {
     @PostMapping("/barcode")
     public CoreResponseDTO issueBarcode(@RequestBody CoreRequestDTO requestDTO){
 
-        log.debug("Y_TEST requestBody ["+requestDTO+"]");
-
         return barcodeService.issueBarcode(requestDTO);
     }
 

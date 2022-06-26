@@ -14,7 +14,7 @@ public enum ResponseCode {
     BARCODE_ISSUE_FAIL(500,"바코드 발급에 실패하였습니다.","INTER SERVER ERROR"),
     BARCODE_SEARCH_SUCCESS(200,"바코드 조회에 성공하였습니다.","SUCCESS"),
     BARCODE_SEARCH_FAIL(500,"바코드 조회에 실패하였습니다.","INTER SERVER ERROR"),
-    BARCODE_SEARCH_EXIST(500,"해당 바코드는 이미 존재합니다.","INTER SERVER ERROR"),
+    BARCODE_SEARCH_EXIST(500,"해당 아이디는 이미 존재합니다.","INTER SERVER ERROR"),
     EMAIL_DUPLICATION(400,"MEMBER-ERR-400","EMAIL DUPLICATED");
 
 
