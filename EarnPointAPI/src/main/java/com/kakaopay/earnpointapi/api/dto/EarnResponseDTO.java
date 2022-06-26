@@ -14,8 +14,11 @@ public class EarnResponseDTO {
     @ApiModelProperty(value = "응답 메시지", dataType = "string")
     private String resMessage;
 
+    @ApiModelProperty(value = "상점정보", dataType = "integer")
+    private String storeId;
+
     @ApiModelProperty(value = "업종정보", dataType = "integer")
-    private Integer category;
+    private Integer categoryId;
 
     @ApiModelProperty(value = "바코드", dataType = "string")
     private String barcode;
@@ -39,10 +42,11 @@ public class EarnResponseDTO {
         this.resMessage = resMessage;
     }
 
-    public EarnResponseDTO(Integer resCode, String resMessage, Integer category, LocalDateTime approvedAt, String accessType, String storeName, String barcode, Integer earnPoint) {
+    public EarnResponseDTO(Integer resCode, String resMessage, Integer categoryId, String storeId, LocalDateTime approvedAt, String accessType, String storeName, String barcode, Integer earnPoint) {
         this.resCode = resCode;
         this.resMessage = resMessage;
-        this.category = category;
+        this.categoryId = categoryId;
+        this.storeId = storeId;
         this.approvedAt = approvedAt;
         this.accessType = accessType;
         this.storeName = storeName;

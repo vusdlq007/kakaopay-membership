@@ -17,7 +17,7 @@ public class EarnRequestDTO {
     private String storeName;
 
     @ApiModelProperty(value = "요청 카테고리", required = true)
-    private Integer category;
+    private Integer categoryId;
 
     @ApiModelProperty(value = "요청 바코드", required = true)
     private String barcode;
@@ -27,9 +27,9 @@ public class EarnRequestDTO {
 
     public EarnRequestDTO() { }
 
-    public EarnRequestDTO(String accessType, Integer category, String barcode, Integer earnPoint) {
+    public EarnRequestDTO(String accessType, Integer categoryId, String barcode, Integer earnPoint) {
         this.accessType = accessType;
-        this.category = category;
+        this.categoryId = categoryId;
         this.barcode = barcode;
         this.earnPoint = earnPoint;
     }

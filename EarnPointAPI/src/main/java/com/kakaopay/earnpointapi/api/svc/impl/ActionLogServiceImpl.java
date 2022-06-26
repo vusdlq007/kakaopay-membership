@@ -53,11 +53,11 @@ public class ActionLogServiceImpl implements ActionLogService {
         LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone));
 
         try{
-            pointVo = pointRepository.findByBarcodeAndCategory(responseDTO.getBarcode(),responseDTO.getCategory());
+            pointVo = pointRepository.findByBarcodeAndCategory(responseDTO.getBarcode(),responseDTO.getCategoryId());
         }catch (Exception e){
             e.printStackTrace();
             log.error("ERRMSG ",e.getMessage());
-            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
+            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
         }
 
         // 해당 맴버의 포인트 정보가 있을때.
@@ -68,13 +68,13 @@ public class ActionLogServiceImpl implements ActionLogService {
             logVo.setBarcode(responseDTO.getBarcode());
             logVo.setAcPoint(responseDTO.getEarnPoint());
             logVo.setAcType(responseDTO.getAccessType());
-            logVo.setCategory(responseDTO.getCategory());
+            logVo.setCategory(responseDTO.getCategoryId());
             logVo.setApprovedAt(responseDTO.getApprovedAt());
             logVo.setRemainPoint(remainPoint);
             logVo.setStoreName(responseDTO.getStoreName());
             logVo.setCreatedAt(curTime);
         }else{
-            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
+            return new EarnResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
         }
 
         try{
@@ -82,9 +82,9 @@ public class ActionLogServiceImpl implements ActionLogService {
         }catch (Exception e){
             e.printStackTrace();
             log.error("ERRMSG ",e.getMessage());
-            return new EarnResponseDTO(ResponseCode.LOG_PUSH_FAIL.getStatus(), ResponseCode.LOG_PUSH_FAIL.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
+            return new EarnResponseDTO(ResponseCode.LOG_PUSH_FAIL.getStatus(), ResponseCode.LOG_PUSH_FAIL.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
         }
 
-        return new EarnResponseDTO(ResponseCode.LOG_PUSH_SUCCESS.getStatus(), ResponseCode.LOG_PUSH_SUCCESS.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
+        return new EarnResponseDTO(ResponseCode.LOG_PUSH_SUCCESS.getStatus(), ResponseCode.LOG_PUSH_SUCCESS.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getEarnPoint());
     }
 }
