@@ -39,6 +39,11 @@ public class ActionLog {
             // 핵심기능 메소드 수행
             responseDTO = jpt.proceed();
 
+            // 정상 처리가 아닐떈 로깅 로직 skip..
+            if (((UseResponseDTO) responseDTO).getResCode() != 200){
+                return responseDTO;
+            }
+
             try {
                 actionLogService.createAction((UseResponseDTO) responseDTO);
             } catch (Exception e) {

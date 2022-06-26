@@ -17,7 +17,7 @@ public class UseRequestDTO {
     private String storeName;
 
     @ApiModelProperty(value = "요청 카테고리", required = true)
-    private Integer category;
+    private Integer categoryId;
 
     @ApiModelProperty(value = "요청 바코드", required = true)
     private String barcode;
@@ -27,9 +27,9 @@ public class UseRequestDTO {
 
     public UseRequestDTO() { }
 
-    public UseRequestDTO(String accessType, Integer category, String barcode, Integer usePoint) {
+    public UseRequestDTO(String accessType, Integer categoryId, String barcode, Integer usePoint) {
         this.accessType = accessType;
-        this.category = category;
+        this.categoryId = categoryId;
         this.barcode = barcode;
         this.usePoint = usePoint;
     }

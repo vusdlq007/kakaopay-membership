@@ -54,10 +54,10 @@ public class ActionLogServiceImpl implements ActionLogService {
         LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone));
 
         try{
-            pointVo = pointRepository.findByBarcodeAndCategory(responseDTO.getBarcode(),responseDTO.getCategory());
+            pointVo = pointRepository.findByBarcodeAndCategory(responseDTO.getBarcode(),responseDTO.getCategoryId());
         }catch (Exception e){
             log.error("ERRMSG ",e.getMessage());
-            return new UseResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
+            return new UseResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
         }
 
         // 해당 맴버의 포인트 정보가 있을때.
@@ -68,22 +68,22 @@ public class ActionLogServiceImpl implements ActionLogService {
             logVo.setBarcode(responseDTO.getBarcode());
             logVo.setAcPoint(responseDTO.getUsePoint());
             logVo.setAcType(responseDTO.getAccessType());
-            logVo.setCategory(responseDTO.getCategory());
+            logVo.setCategory(responseDTO.getCategoryId());
             logVo.setApprovedAt(responseDTO.getApprovedAt());
             logVo.setRemainPoint(remainPoint + responseDTO.getUsePoint());
             logVo.setStoreName(responseDTO.getStoreName());
             logVo.setCreatedAt(curTime);
         }else{
-            return new UseResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
+            return new UseResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
         }
 
         try{
             logVo = actionLogRepository.save(logVo);
         }catch (Exception e){
             log.error("ERRMSG ",e.getMessage());
-            return new UseResponseDTO(ResponseCode.LOG_PUSH_FAIL.getStatus(), ResponseCode.LOG_PUSH_FAIL.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
+            return new UseResponseDTO(ResponseCode.LOG_PUSH_FAIL.getStatus(), ResponseCode.LOG_PUSH_FAIL.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
         }
 
-        return new UseResponseDTO(ResponseCode.LOG_PUSH_SUCCESS.getStatus(), ResponseCode.LOG_PUSH_SUCCESS.getErrorCode(), responseDTO.getCategory(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
+        return new UseResponseDTO(ResponseCode.LOG_PUSH_SUCCESS.getStatus(), ResponseCode.LOG_PUSH_SUCCESS.getErrorCode(), responseDTO.getCategoryId(), responseDTO.getStoreId(), null, TypeConstant.EARN, responseDTO.getStoreName(), responseDTO.getBarcode(), responseDTO.getUsePoint());
     }
 }
