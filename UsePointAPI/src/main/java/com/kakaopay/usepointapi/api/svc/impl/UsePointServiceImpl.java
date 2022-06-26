@@ -3,6 +3,7 @@ package com.kakaopay.usepointapi.api.svc.impl;
 
 import com.kakaopay.usepointapi.api.dto.UseRequestDTO;
 import com.kakaopay.usepointapi.api.dto.UseResponseDTO;
+import com.kakaopay.usepointapi.api.repo.MemberRepository;
 import com.kakaopay.usepointapi.api.repo.PointRepository;
 import com.kakaopay.usepointapi.api.repo.StoreRepository;
 import com.kakaopay.usepointapi.api.svc.PointService;
@@ -33,6 +34,9 @@ public class UsePointServiceImpl implements UsePointService {
     String timeZone;
 
     @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
     PointRepository pointRepository;
 
     @Autowired
@@ -50,11 +54,23 @@ public class UsePointServiceImpl implements UsePointService {
         Optional<PointVo> pointVo = Optional.of(new PointVo());
         Optional<StoreVo> storeVo = Optional.of(new StoreVo());
 
-        MemberVo memberVo = new MemberVo();
-        memberVo.setBarcode(requestDTO.getBarcode());
+        Optional<MemberVo> memberVo = Optional.of(new MemberVo());
+        memberVo.get().setBarcode(requestDTO.getBarcode());
 
         StoreCategoryVo categoryVo = new StoreCategoryVo();
         categoryVo.setCategoryId(requestDTO.getCategoryId());
+
+        try {
+            memberVo = memberRepository.findByBarcode(requestDTO.getBarcode());
+        } catch (Exception e) {
+            log.error("ERRMSG ", e.getMessage());
+            return new UseResponseDTO(ResponseCode.POINT_NO_MEMBER_FAIL.getStatus(), ResponseCode.POINT_NO_MEMBER_FAIL.getErrorCode(), requestDTO.getCategoryId(), requestDTO.getStoreId(), null, TypeConstant.USE, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getUsePoint());
+        }
+
+        //없는 맴버일때 오류 리턴.
+        if(memberVo.isEmpty()){
+            return new UseResponseDTO(ResponseCode.POINT_NO_MEMBER_FAIL.getStatus(), ResponseCode.POINT_NO_MEMBER_FAIL.getErrorCode(), requestDTO.getCategoryId(), requestDTO.getStoreId(), null, TypeConstant.USE, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getUsePoint());
+        }
 
         try {
             pointVo = pointRepository.findByBarcodeAndCategory(requestDTO.getBarcode(), requestDTO.getCategoryId());
