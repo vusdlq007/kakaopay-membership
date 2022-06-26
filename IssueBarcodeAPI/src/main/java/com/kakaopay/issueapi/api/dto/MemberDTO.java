@@ -28,7 +28,8 @@ public class MemberDTO {
     public MemberDTO(){
     }
 
-    public MemberDTO(String name){
+    public MemberDTO(Integer id, String name){
+        this.memberId = id;
         this.name = name;
     }
 

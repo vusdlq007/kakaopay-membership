@@ -1,6 +1,6 @@
 package com.kakaopay.issueapi;
 
-import com.kakaopay.issueapi.api.ctr.BarcodeRestController;
+
 import com.kakaopay.issueapi.api.dto.CoreRequestDTO;
 import com.kakaopay.issueapi.api.dto.CoreResponseDTO;
 import com.kakaopay.issueapi.api.dto.MemberDTO;
@@ -14,14 +14,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -50,7 +47,7 @@ public class BarcodeServiceTest {
 
         CoreRequestDTO requestDTO = new CoreRequestDTO();
         ReflectionTestUtils.setField(requestDTO,"accessType", TypeConstant.ISSUE);
-        ReflectionTestUtils.setField(requestDTO,"reqDetail",new MemberDTO("김윤권"));
+        ReflectionTestUtils.setField(requestDTO,"reqDetail",new MemberDTO(138942,"김윤권"));
 
         CoreResponseDTO responseDTO = new CoreResponseDTO();
         ReflectionTestUtils.setField(responseDTO,"resCode", ResponseCode.BARCODE_ISSUE_SUCCESS.getStatus());
@@ -63,8 +60,28 @@ public class BarcodeServiceTest {
         Assertions.assertThat(barcodeService.issueBarcode(requestDTO).getResCode()).isEqualTo(responseDTO.getResCode());
     }
 
+
     @Test
-    @DisplayName("맴버가입 실패")
+    @DisplayName("맴버가입 실패, 기 존재 ID")
+    public void issueBarcodeFailExistId() throws Exception {
+
+        CoreRequestDTO requestDTO = new CoreRequestDTO();
+        ReflectionTestUtils.setField(requestDTO,"accessType", TypeConstant.ISSUE);
+        ReflectionTestUtils.setField(requestDTO,"reqDetail",new MemberDTO(34567,"김윤권"));
+
+        CoreResponseDTO responseDTO = new CoreResponseDTO();
+        ReflectionTestUtils.setField(responseDTO,"resCode", ResponseCode.BARCODE_SEARCH_EXIST.getStatus());
+        ReflectionTestUtils.setField(responseDTO,"accessType", TypeConstant.ISSUE);
+        ReflectionTestUtils.setField(responseDTO,"resResult", ResponseCode.BARCODE_SEARCH_EXIST.getMessage());
+        ReflectionTestUtils.setField(responseDTO,"resMessage", ResponseCode.BARCODE_SEARCH_EXIST.getErrorCode());
+
+        // when
+        //then
+        Assertions.assertThat(barcodeService.issueBarcode(requestDTO).getResCode()).isEqualTo(responseDTO.getResCode());
+    }
+
+    @Test
+    @DisplayName("맴버가입 실패, 잘못된요청")
     public void issueBarcodeFail() throws Exception {
 
         CoreRequestDTO requestDTO = new CoreRequestDTO();

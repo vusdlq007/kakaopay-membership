@@ -46,16 +46,20 @@ public class BarcodeServiceImpl implements BarcodeService {
     @Transactional
     public CoreResponseDTO issueBarcode(CoreRequestDTO requestDto) {
 
+        if(requestDto.getReqDetail() == null){
+            return new CoreResponseDTO(ResponseCode.BARCODE_ISSUE_FAIL.getStatus(), ResponseCode.BARCODE_ISSUE_FAIL.getErrorCode(), ResponseCode.BARCODE_ISSUE_FAIL.getMessage());
+        }
+
         MemberVo memberVo = new MemberVo();
         int memberId = requestDto.getReqDetail().getMemberId();
-        int idLength = String.valueOf(memberId).length();
+
+        if(String.valueOf(memberId).length() > 9 || String.valueOf(memberId).length() == 0){
+            return new CoreResponseDTO(ResponseCode.BARCODE_ISSUE_FAIL.getStatus(), ResponseCode.BARCODE_ISSUE_FAIL.getErrorCode(), ResponseCode.BARCODE_ISSUE_FAIL.getMessage());
+        }
         // Member 랜덤 고유키 생성(9자리)
         long barcodeUuid = Util.generateUUID(10);
         LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone == null ? "Asia/Seoul": timeZone));
 
-        if(idLength > 9){
-            return new CoreResponseDTO(ResponseCode.BARCODE_ISSUE_FAIL.getStatus(), ResponseCode.BARCODE_ISSUE_FAIL.getErrorCode(), ResponseCode.BARCODE_ISSUE_FAIL.getMessage());
-        }
 
         memberVo.setMemberId(memberId);
         memberVo.setBarcode(String.valueOf(barcodeUuid));
