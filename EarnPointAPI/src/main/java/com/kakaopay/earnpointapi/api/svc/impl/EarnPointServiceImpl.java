@@ -2,6 +2,7 @@ package com.kakaopay.earnpointapi.api.svc.impl;
 
 import com.kakaopay.earnpointapi.api.dto.EarnRequestDTO;
 import com.kakaopay.earnpointapi.api.dto.EarnResponseDTO;
+import com.kakaopay.earnpointapi.api.repo.MemberRepository;
 import com.kakaopay.earnpointapi.api.repo.PointRepository;
 import com.kakaopay.earnpointapi.api.repo.StoreRepository;
 import com.kakaopay.earnpointapi.api.svc.EarnPointService;
@@ -31,6 +32,9 @@ public class EarnPointServiceImpl implements EarnPointService {
     String timeZone;
 
     @Autowired
+    MemberRepository memberRepository;
+
+    @Autowired
     PointRepository pointRepository;
 
     @Autowired
@@ -49,11 +53,23 @@ public class EarnPointServiceImpl implements EarnPointService {
         Optional<PointVo> pointVo = Optional.of(new PointVo());
         Optional<StoreVo> storeVo = Optional.of(new StoreVo());
 
-        MemberVo memberVo = new MemberVo();
-        memberVo.setBarcode(requestDTO.getBarcode());
+        Optional<MemberVo> memberVo = Optional.of(new MemberVo());
+        memberVo.get().setBarcode(requestDTO.getBarcode());
 
         StoreCategoryVo categoryVo = new StoreCategoryVo();
         categoryVo.setCategoryId(requestDTO.getCategoryId());
+
+        try {
+             memberVo = memberRepository.findByBarcode(requestDTO.getBarcode());
+        } catch (Exception e) {
+            log.error("ERRMSG ", e.getMessage());
+            return new EarnResponseDTO(ResponseCode.POINT_NO_MEMBER_FAIL.getStatus(), ResponseCode.POINT_NO_MEMBER_FAIL.getErrorCode(),requestDTO.getCategoryId(), requestDTO.getStoreId(), null, TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
+        }
+
+        //없는 맴버일때 오류 리턴.
+        if(memberVo.isEmpty()){
+            return new EarnResponseDTO(ResponseCode.POINT_NO_MEMBER_FAIL.getStatus(), ResponseCode.POINT_NO_MEMBER_FAIL.getErrorCode(), requestDTO.getCategoryId(), requestDTO.getStoreId(), null, TypeConstant.EARN, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getEarnPoint());
+        }
 
         try {
             pointVo = pointRepository.findByBarcodeAndCategory(requestDTO.getBarcode(), requestDTO.getCategoryId());
