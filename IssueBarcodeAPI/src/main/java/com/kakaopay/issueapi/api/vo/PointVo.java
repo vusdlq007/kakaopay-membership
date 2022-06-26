@@ -1,11 +1,10 @@
 package com.kakaopay.issueapi.api.vo;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 @Data
 @Entity
@@ -21,6 +20,10 @@ public class PointVo {
 
     @JoinColumn
     private Integer category;
+
+    @JoinColumn
+    @Column(name = "store_id")
+    private String storeId;
 
     @Column(name = "point")
     private Integer point;
