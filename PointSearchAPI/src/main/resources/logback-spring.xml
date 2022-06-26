@@ -3,7 +3,7 @@
 <!-- 300초마다 설정 파일의 변경을 확인 하여 변경시 갱신 -->
 <configuration scan="true" scanPeriod="300 seconds">
     <!-- logback 이용시 사용하는 xml -->
-    <property scope="context" name="logHome" value="logs/EarnPointApi" />
+    <property scope="context" name="logHome" value="logs/PointSearchApi" />
 <!--    <property name="logFileName">dashboard_api_log</property>-->
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -14,12 +14,12 @@
 
     <!-- fileAppender설정 -->
     <appender name="DailyRollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${logHome}/earn-point-api.log</file>
+        <file>${logHome}/point-search-api.log</file>
         <!--        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">-->
         <!--            <level>DEBUG</level>-->
         <!--        </filter>-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${logHome}/earn-point-api-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
+            <fileNamePattern>${logHome}/point-search-api-%d{yyyy-MM-dd}-%i.log</fileNamePattern>
             <!--
                 maxHistory를 30일로 설정
                 30일이 지난 로그들은 삭제
@@ -54,7 +54,7 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="com.kakaopay.earnpointapi" level="debug" additivity="false">
+    <logger name="com.kakaopay.pointsarchapi" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
     <!-- 스프링 쿼츠에서 찍는건 level을 debug로 설정 -->

@@ -54,7 +54,7 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 
-    <logger name="com.kakaopay.issuebarcodeapi" level="debug" additivity="false">
+    <logger name="com.kakaopay.usepointapi" level="debug" additivity="false">
         <appender-ref ref="STDOUT"/>
     </logger>
     <!-- 스프링 쿼츠에서 찍는건 level을 debug로 설정 -->
