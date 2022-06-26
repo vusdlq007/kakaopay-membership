@@ -21,7 +21,7 @@ public class PointVo {
     private String barcode;
 
     @JoinColumn
-    private Integer category;
+    private Long category;
 
     @JoinColumn
     @Column(name = "store_id")
@@ -34,7 +34,7 @@ public class PointVo {
     private LocalDateTime createdAt;
 
 
-    public void update(String barcode, Integer category, Integer point, String storeId) {
+    public void update(String barcode, Long category, Integer point, String storeId) {
         this.barcode = barcode;
         this.category = category;
         this.point = point;

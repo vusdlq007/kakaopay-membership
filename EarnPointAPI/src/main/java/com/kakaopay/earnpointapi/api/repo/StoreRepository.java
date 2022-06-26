@@ -14,6 +14,8 @@ public interface StoreRepository extends JpaRepository<StoreVo, String> {     //
 
     public Optional<StoreVo> findByStoreId(String id);
 
+    public Optional<StoreVo> findByStoreIdAndCategoryId(String id, Long categoryId);
+
     public StoreVo findByStoreIdAndAndCategoryId(String storeId, String categoryId);
 
 }

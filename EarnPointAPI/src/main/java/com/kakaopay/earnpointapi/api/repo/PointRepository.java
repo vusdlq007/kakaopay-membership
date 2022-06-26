@@ -15,7 +15,7 @@ public interface PointRepository extends JpaRepository<PointVo, Integer> {     /
 
     public PointVo findByBarcode(String barcode);
 
-    public Optional<PointVo> findByBarcodeAndCategory(String barcode, Integer category);
+    public Optional<PointVo> findByBarcodeAndCategory(String barcode, Long category);
 
 
 }

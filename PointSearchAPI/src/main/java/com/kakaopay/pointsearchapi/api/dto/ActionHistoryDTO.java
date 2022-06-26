@@ -48,6 +48,10 @@ public class ActionHistoryDTO {           // Vo는 read-only속성을 가지며 
         this.partnerName = partnerName;
     }
 
+    public ActionHistoryDTO() {
+
+    }
+
     public static class ActionHistoryResponse{
         @JsonProperty("approved_at")
         @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환

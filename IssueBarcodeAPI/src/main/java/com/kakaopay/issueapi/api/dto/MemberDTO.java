@@ -25,4 +25,17 @@ public class MemberDTO {
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환
     private LocalDateTime createdAt;
 
+    public MemberDTO(){
+    }
+
+    public MemberDTO(String name){
+        this.name = name;
+    }
+
+    public MemberDTO(Integer memberId, String name, String barcode, LocalDateTime createdAt){
+        this.name = name;
+        this.memberId = memberId;
+        this.barcode = barcode;
+        this.createdAt = createdAt;
+    }
 }

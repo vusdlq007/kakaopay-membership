@@ -1,4 +1,4 @@
-package com.kakaopay.usepointapi.cmm.constant;
+package com.kakaopay.issueapi.cmm.constant;
 
 public class TypeConstant {
 

@@ -19,7 +19,7 @@ public class ActionLogVo {
     private String barcode;
 
     @JoinColumn
-    private Integer category;
+    private Long category;
 
     @Column(name = "ac_point")
     private Integer acPoint;                // 적립이나 차감된 포인트 치수

@@ -42,6 +42,12 @@ public class UsePointServiceImpl implements UsePointService {
     @Autowired
     StoreRepository storeRepository;
 
+    public UsePointServiceImpl(MemberRepository memberRepository, PointRepository pointRepository, StoreRepository storeRepository) {
+        this.memberRepository = memberRepository;
+        this.pointRepository = pointRepository;
+        this.storeRepository = storeRepository;
+    }
+
     /**
      * 포인트가 없다면 리턴처리 있다면 더티 체크로 업데이트
      *
@@ -80,7 +86,7 @@ public class UsePointServiceImpl implements UsePointService {
         }
 
         try {
-            storeVo = storeRepository.findByStoreId(requestDTO.getStoreId());
+            storeVo = storeRepository.findByStoreIdAndCategoryId(requestDTO.getStoreId(), requestDTO.getCategoryId());
         } catch (Exception e) {
             e.printStackTrace();
             log.error("ERRMSG ", e.getMessage());

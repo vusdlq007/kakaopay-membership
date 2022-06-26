@@ -15,7 +15,7 @@ public class StoreCategoryVo {
 
     @Id
     @Column(name = "id")
-    private Integer categoryId;
+    private Long categoryId;
 
     @Column(name = "name")
     private String name;

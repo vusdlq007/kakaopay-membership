@@ -8,6 +8,7 @@ import com.kakaopay.issueapi.api.svc.BarcodeService;
 import com.kakaopay.issueapi.api.vo.MemberVo;
 import com.kakaopay.issueapi.cmm.constant.ResponseCode;
 import com.kakaopay.issueapi.cmm.util.Util;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -23,13 +24,18 @@ import java.util.Optional;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class BarcodeServiceImpl implements BarcodeService {
 
     @Value("${custom.service.timezone}")
     String timeZone;
 
     @Autowired
-    MemberRepository memberRepository;
+    private MemberRepository memberRepository;
+
+    public BarcodeServiceImpl(MemberRepository memberRepository){
+        this.memberRepository = memberRepository;
+    }
 
     /**
      * 맴버, 바코드 생성 발급
@@ -44,12 +50,16 @@ public class BarcodeServiceImpl implements BarcodeService {
         // Member 랜덤 고유키 생성(9자리)
         long memberUuid = Util.generateUUID(9);
         long barcodeUuid = Util.generateUUID(10);
-        LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone));
+        LocalDateTime curTime = LocalDateTime.now(ZoneId.of(timeZone == null ? "Asia/Seoul": timeZone));
 
+        log.debug("barcodeUuid["+barcodeUuid+"]");
         memberVo.setMemberId((int) memberUuid);
         memberVo.setBarcode(String.valueOf(barcodeUuid));
         memberVo.setName(requestDto.getReqDetail().getName());
         memberVo.setCreatedAt(curTime);
+        log.debug("memberVo["+memberVo.toString()+"]");
+        log.debug("memberVo["+memberVo.getBarcode()+"]");
+        log.debug("is["+memberRepository.toString()+"]");
 
         try {
             Optional<MemberVo> result = memberRepository.findByBarcode(memberVo.getBarcode());
@@ -61,6 +71,7 @@ public class BarcodeServiceImpl implements BarcodeService {
             }
 
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("ERRMSG ",e.getMessage());
             return new CoreResponseDTO(ResponseCode.BARCODE_SEARCH_FAIL.getStatus(), ResponseCode.BARCODE_SEARCH_FAIL.getErrorCode(), requestDto);
         }

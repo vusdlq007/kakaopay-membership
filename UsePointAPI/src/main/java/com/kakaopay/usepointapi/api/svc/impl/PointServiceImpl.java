@@ -52,6 +52,6 @@ public class PointServiceImpl implements PointService {
             return new UseResponseDTO(ResponseCode.POINT_SEARCH_FAIL.getStatus(), ResponseCode.POINT_SEARCH_FAIL.getErrorCode(), requestDTO.getCategoryId(), requestDTO.getStoreId(), null, TypeConstant.USE, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getUsePoint());
         }
 
-        return new UseResponseDTO(ResponseCode.POINT_SEARCH_SUCCESS.getStatus(), ResponseCode.POINT_SEARCH_SUCCESS.getErrorCode(), requestDTO.getUsePoint(), requestDTO.getStoreId(), null, TypeConstant.USE, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getUsePoint());
+        return new UseResponseDTO(ResponseCode.POINT_SEARCH_SUCCESS.getStatus(), ResponseCode.POINT_SEARCH_SUCCESS.getErrorCode(), requestDTO.getCategoryId(), requestDTO.getStoreId(), null, TypeConstant.USE, requestDTO.getStoreName(), requestDTO.getBarcode(), requestDTO.getUsePoint());
     }
 }

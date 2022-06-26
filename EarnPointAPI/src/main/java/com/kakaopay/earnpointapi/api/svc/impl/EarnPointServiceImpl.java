@@ -40,6 +40,12 @@ public class EarnPointServiceImpl implements EarnPointService {
     @Autowired
     StoreRepository storeRepository;
 
+    public EarnPointServiceImpl(MemberRepository memberRepository, PointRepository pointRepository, StoreRepository storeRepository) {
+        this.memberRepository = memberRepository;
+        this.pointRepository = pointRepository;
+        this.storeRepository = storeRepository;
+    }
+
     /**
      * 최초 적립시에는 단순 저장, 이후 적립은 더티 체크로 업데이트
      *
@@ -79,7 +85,7 @@ public class EarnPointServiceImpl implements EarnPointService {
         }
 
         try {
-            storeVo = storeRepository.findByStoreId(requestDTO.getStoreId());
+            storeVo = storeRepository.findByStoreIdAndCategoryId(requestDTO.getStoreId(), requestDTO.getCategoryId());
         } catch (Exception e) {
             e.printStackTrace();
             log.error("ERRMSG ", e.getMessage());
