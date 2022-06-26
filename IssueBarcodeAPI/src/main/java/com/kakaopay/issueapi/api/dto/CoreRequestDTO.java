@@ -10,9 +10,6 @@ public class CoreRequestDTO {
     @ApiModelProperty(value = "요청 타입", dataType = "string")
     private String accessType;
 
-    @ApiModelProperty(value = "요청자ID", dataType = "string")
-    private String acUserId;
-
     @ApiModelProperty(value = "요청 내용", dataType = "json", required = true)
     private MemberDTO reqDetail;
 

@@ -18,11 +18,6 @@ public class CoreResponseDTO<T> {
     @ApiModelProperty(value = "요청 타입", dataType = "string")
     private String accessType;
 
-    @ApiModelProperty(value = "액션 타입", dataType = "string")
-    private String actionType;
-
-    @ApiModelProperty(value = "요청자ID", dataType = "string")
-    private String acUserId;
 
     public CoreResponseDTO() { }
 
@@ -32,11 +27,10 @@ public class CoreResponseDTO<T> {
         this.resResult = responseResult;
     }
 
-    public CoreResponseDTO(Integer resCode, String resMessage, T responseResult, String acUserId, String accessType) {
+    public CoreResponseDTO(Integer resCode, String resMessage, T responseResult, String accessType) {
         this.resCode = resCode;
         this.resMessage = resMessage;
         this.resResult = responseResult;
-        this.acUserId = acUserId;
         this.accessType = accessType;
     }
 

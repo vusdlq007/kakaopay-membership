@@ -31,7 +31,11 @@ public class BarcodeServiceImpl implements BarcodeService {
     @Autowired
     MemberRepository memberRepository;
 
-
+    /**
+     * 맴버, 바코드 생성 발급
+     * @param requestDto
+     * @return
+     */
     @Override
     @Transactional
     public CoreResponseDTO issueBarcode(CoreRequestDTO requestDto) {
@@ -66,7 +70,7 @@ public class BarcodeServiceImpl implements BarcodeService {
 
 
     /**
-     * 특정 맴버/바코드 정보 조회.
+     * 맴버 ID로 특정 맴버/바코드 정보 조회.
      *
      * @param requestDto
      * @return
