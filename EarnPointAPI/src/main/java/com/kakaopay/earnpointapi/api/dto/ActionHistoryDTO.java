@@ -35,21 +35,6 @@ public class ActionHistoryDTO {           // Vo는 read-only속성을 가지며 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환
     private LocalDateTime createdAt;
 
-    @JsonProperty("create_time_greater_than")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환
-    private LocalDateTime createTimeGreaterThan;
-
-    @JsonProperty("create_time_less_than")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환
-    private LocalDateTime createTimeLessThan;
-
-    @JsonProperty("create_time_greater_than_equal")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환
-    private LocalDateTime createTimeGreaterThanEqual;
-
-    @JsonProperty("create_time_less_than_equal")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss") //데이터 포맷 변환
-    private LocalDateTime createTimeLessThanEqual;
 
 
 }
